@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TypeX"
+rootProject.name = "TypeX-Hackathon"
 include(":app")
  
