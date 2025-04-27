@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="currentStep"
+            type="cc.typex.app.page.keyboard.KeyboardGuideActivity.GuideStep" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_activity_background">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_keyboard_welcome"
+            app:layout_constraintDimensionRatio="230:276"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.556" />
+
+        <TextView
+            android:id="@+id/tv_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="171dp"
+            android:fontFamily="@font/sans_semibold"
+            android:text="@{currentStep.title}"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/keyboard_guide_title" />
+
+        <TextView
+            android:id="@+id/tv_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/sans_light"
+            android:text="@{currentStep.description}"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_1"
+            tools:text="@string/keyboard_guide_description" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            animation="@{currentStep.lottieAssetName}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:background="@drawable/bg_keyboard_guide_anim"
+            app:layout_constraintDimensionRatio="366:220"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_2"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            tools:lottie_fileName="anim/keyboard_guide_1.json" />
+
+        <TextView
+            android:id="@+id/tv_button"
+            style="@style/Button.Positive.Big"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:layout_marginBottom="52dp"
+            android:text="@{currentStep.button}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@string/keyboard_guide_button_step_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
