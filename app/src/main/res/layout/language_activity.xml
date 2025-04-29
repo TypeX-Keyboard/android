@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cc.typex.app.widget.view.AppToolbarView
+            android:id="@+id/etv_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:etv_title="@string/setting_language"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="@dimen/margin_horizontal_normal"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/etv_toolbar">
+
+            <TextView
+                android:id="@+id/tv_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_language_item"
+                android:paddingStart="@dimen/margin_horizontal_normal"
+                android:paddingTop="12dp"
+                android:paddingEnd="@dimen/margin_horizontal_normal"
+                android:paddingBottom="12dp"
+                android:text="English"
+                app:layout_constraintTop_toBottomOf="@id/etv_toolbar" />
+
+            <TextView
+                android:id="@+id/tv_chinese"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_horizontal_normal"
+                android:background="@drawable/bg_language_item"
+                android:paddingStart="@dimen/margin_horizontal_normal"
+                android:paddingTop="12dp"
+                android:paddingEnd="@dimen/margin_horizontal_normal"
+                android:paddingBottom="12dp"
+                android:text="Chinese"
+                app:layout_constraintTop_toBottomOf="@id/etv_toolbar" />
+
+            <TextView
+                android:id="@+id/tv_japanese"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_horizontal_normal"
+                android:background="@drawable/bg_language_item"
+                android:paddingStart="@dimen/margin_horizontal_normal"
+                android:paddingTop="12dp"
+                android:paddingEnd="@dimen/margin_horizontal_normal"
+                android:paddingBottom="12dp"
+                android:text="Japanese"
+                app:layout_constraintTop_toBottomOf="@id/etv_toolbar" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
