@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="cc.typex.app.page.wallet.WalletAddViewModel" />
+
+        <variable
+            name="isImport"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_wallet"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_wallet_detail"
+                app:layout_constraintBottom_toTopOf="@id/tv_success"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintWidth_percent="0.647">
+
+                <TextView
+                    android:id="@+id/tv_wallet_alias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sans_medium"
+                    android:text="@{viewModel.wallet.alias}"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.136"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.515"
+                    tools:text="Wallet X" />
+
+                <TextView
+                    android:id="@+id/tv_wallet_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sans_light"
+                    android:text="@string/wallet_create_address"
+                    android:textColor="#80FFFFFF"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_wallet_alias"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.7" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sans_light"
+                    android:text="@{viewModel.wallet.address}"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_wallet_address_title"
+                    app:layout_constraintWidth_percent="0.821"
+                    tools:text="JCthYvwpYinPGC4XjhXGx1nApAE2PVjop7DgJPVwRtub" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_success"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:fontFamily="@font/sans_medium"
+                android:gravity="center"
+                android:text="@{isImport?@string/wallet_create_import_success:@string/wallet_create_create_success}"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_next"
+                app:layout_constraintEnd_toEndOf="@id/cl_wallet"
+                app:layout_constraintStart_toStartOf="@id/cl_wallet"
+                app:layout_constraintTop_toBottomOf="@id/cl_wallet"
+                tools:text="@string/wallet_create_create_success" />
+
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/sans_medium"
+                android:gravity="center"
+                android:text="@{isImport?@string/wallet_create_import_next:@string/wallet_create_create_next}"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/cl_wallet"
+                app:layout_constraintStart_toStartOf="@id/cl_wallet"
+                app:layout_constraintTop_toBottomOf="@id/tv_success"
+                tools:text="@string/wallet_create_create_next" />
+
+            <TextView
+                android:id="@+id/tv_skip"
+                visibleOrGone="@{!isImport}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:padding="16dp"
+                android:text="@string/wallet_create_skip"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_backup"
+                style="@style/Button.Positive.Big"
+                visibleOrGone="@{!isImport}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_horizontal_normal"
+                android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                android:text="@string/wallet_create_backup"
+                app:layout_constraintBottom_toTopOf="@id/tv_skip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="word"
+            type="String" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
+
+        <TextView
+            android:id="@+id/tv_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_wallet_reveal_mnemonic_list_item"
+            android:fontFamily="@font/sans_regular"
+            android:gravity="center"
+            android:paddingStart="@dimen/margin_horizontal_normal"
+            android:paddingTop="14dp"
+            android:paddingEnd="@dimen/margin_horizontal_normal"
+            android:paddingBottom="14dp"
+            android:text="@{word}"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            tools:text="average" />
+
+        <TextView
+            android:id="@+id/tv_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/sans_semibold"
+            android:includeFontPadding="false"
+            android:text="@{String.valueOf(index)}"
+            android:textColor="#33FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            tools:text="1" />
+    </FrameLayout>
+</layout>

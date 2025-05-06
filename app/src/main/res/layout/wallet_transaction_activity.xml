@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="cc.typex.app.page.wallet.WalletTransactionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cc.typex.app.widget.view.AppToolbarView
+            android:id="@+id/etv_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:etv_title="@string/wallet_history_operation_send" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etv_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_scroll_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/v_icon"
+                    borderColor="@{@color/white_15_percent}"
+                    borderResizeImage="@{true}"
+                    borderWidth="@{@dimen/dp_1}"
+                    imageUrl="@{viewModel.operationTokenLogo}"
+                    roundRadius="@{@dimen/dp_30}"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="48dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@drawable/ic_wallet_reveal_solana" />
+
+                <TextView
+                    android:id="@+id/tv_chain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sans_medium"
+                    android:text="@{viewModel.operationTokenSymbol}"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_icon"
+                    tools:text="TRUMP" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/sans_light"
+                    android:text="@{viewModel.timestamp}"
+                    android:textColor="#80FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_chain"
+                    tools:text="2025.01.12 22:21" />
+
+                <LinearLayout
+                    android:id="@+id/ll_detail"
+                    visibleOrGone="@{viewModel.transactionDetail != null}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/tv_time">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_tx_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_status"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.txStatus}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Complete" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_trans_quality"
+                        visibleOrGone="@{viewModel.transactionDetail.action == 1 || viewModel.transactionDetail.action == 2}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_transfer_quality"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transactionDetail.amount + ` ` + viewModel.transactionDetail.symbol}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_swap_receive"
+                        visibleOrGone="@{!viewModel.transactionFailed &amp;&amp; (viewModel.transactionDetail.action == 3 || viewModel.transactionDetail.action == 4)}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@{viewModel.transactionDetail.action == 3?@string/wallet_transaction_swap_bought:@string/wallet_transaction_swap_sold}"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@string/wallet_transaction_swap_bought" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transactionDetail.action==3?viewModel.transactionDetail.outAmount + ` ` + viewModel.transactionDetail.symbolOut:viewModel.transactionDetail.inAmount + ` ` + viewModel.transactionDetail.symbolIn}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="124.4 PUMP" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_swap_pay"
+                        visibleOrGone="@{!viewModel.transactionFailed &amp;&amp; (viewModel.transactionDetail.action == 3 || viewModel.transactionDetail.action == 4)}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@{viewModel.transactionDetail.action == 3?@string/wallet_transaction_swap_paid:@string/wallet_transaction_swap_received}"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Pay" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transactionDetail.action==3?viewModel.transactionDetail.inAmount + ` ` + viewModel.transactionDetail.symbolIn:viewModel.transactionDetail.outAmount + ` ` + viewModel.transactionDetail.symbolOut}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="0.02 SOL" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_swap_operation"
+                        visibleOrGone="@{viewModel.transactionFailed &amp;&amp; (viewModel.transactionDetail.action == 3 || viewModel.transactionDetail.action == 4)}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@{viewModel.transactionDetail.action == 3?@string/wallet_transaction_swap_buy:@string/wallet_transaction_swap_sell}"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Buy" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transactionDetail.action == 3?viewModel.transactionDetail.outAmount+` `+viewModel.transactionDetail.symbolOut:viewModel.transactionDetail.inAmount+` `+viewModel.transactionDetail.symbolIn}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="0.02 SOL" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_service_fee"
+                        visibleOrGone="@{viewModel.transactionDetail.action == 3 || viewModel.transactionDetail.action == 4}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_service_fee"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transactionDetail.platformFee+` SOL`}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="0.01 SOL" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_network_fee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_network_fee"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transactionDetail.txFee+` SOL`}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="0.01 SOL" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_network"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="Network"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="Solana"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_tx_hash"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_tx_hash"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.txHashShort}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/v_copy_hash"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="pPjov...5NRW" />
+
+                        <View
+                            android:id="@+id/v_copy_hash"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="@drawable/ic_wallet_transaction_copy"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_from"
+                        visibleOrGone="@{viewModel.transactionDetail.action == 1 || viewModel.transactionDetail.action == 2}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_from"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_transfer_from"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="100dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transferFromAddress}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/v_copy_from"
+                            app:layout_constraintStart_toEndOf="@id/tv_from"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="7rtiKSUDLBm59b1SBmD9oajcP8xE64vAGSMbAN5CXy1q" />
+
+                        <View
+                            android:id="@+id/v_copy_from"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="@drawable/ic_wallet_transaction_copy"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_to"
+                        visibleOrGone="@{viewModel.transactionDetail.action == 1 || viewModel.transactionDetail.action == 2}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_to"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_horizontal_normal"
+                            android:fontFamily="@font/sans_light"
+                            android:text="@string/wallet_transaction_transfer_to"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="100dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/sans_medium"
+                            android:text="@{viewModel.transferToAddress}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/v_copy_to"
+                            app:layout_constraintStart_toEndOf="@id/tv_to"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="7rtiKSUDLBm59b1SBmD9oajcP8xE64vAGSMbAN5CXy1q" />
+
+                        <View
+                            android:id="@+id/v_copy_to"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="@drawable/ic_wallet_transaction_copy"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:layout_marginStart="@dimen/margin_horizontal_normal"
+                            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+                            android:background="#4DFFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

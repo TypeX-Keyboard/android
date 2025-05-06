@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="show"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="cc.typex.app.page.wallet.WalletRevealViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cc.typex.app.widget.view.AppToolbarView
+            android:id="@+id/etv_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:etv_title="@string/private_key"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="96dp"
+            android:background="@drawable/ic_wallet_reveal_solana"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etv_toolbar" />
+
+        <TextView
+            android:id="@+id/tv_chain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/sans_medium"
+            android:text="@{viewModel.wallet.alias}"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_icon" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="72dp"
+            android:fontFamily="@font/sans_light"
+            android:gravity="center"
+            android:text="@{viewModel.wallet.address}"
+            android:textColor="#80FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_chain"
+            tools:text="JCthYvwpYinPGC4XjhXGx1nApAE2PVjop7DgJPVwRtub" />
+
+        <TextView
+            android:id="@+id/tv_private_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:background="@drawable/bg_wallet_reveal_private_key"
+            android:fontFamily="@font/sans_medium"
+            android:gravity="center"
+            android:minHeight="164dp"
+            android:paddingStart="@dimen/margin_horizontal_normal"
+            android:paddingTop="@dimen/margin_horizontal_normal"
+            android:paddingEnd="@dimen/margin_horizontal_normal"
+            android:paddingBottom="@dimen/margin_horizontal_normal"
+            android:text="@{viewModel.privateKey}"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_address"
+            tools:text="JCthYvwpYinPGC4XjhXGx1nApAE2PVjop9DgJPVwRtubfwfwcwvwvwvwvewvebv23r242" />
+
+        <View
+            android:id="@+id/v_private_key_mask"
+            visibleOrGone="@{!show}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_wallet_reveal_private_key_mask"
+            app:layout_constraintBottom_toBottomOf="@id/tv_private_key"
+            app:layout_constraintEnd_toEndOf="@id/tv_private_key"
+            app:layout_constraintStart_toStartOf="@id/tv_private_key"
+            app:layout_constraintTop_toTopOf="@id/tv_private_key" />
+
+        <TextView
+            android:id="@+id/tv_show_hide"
+            style="@style/Button.Outline.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_horizontal_normal"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:text="@{show?@string/wallet_reveal_private_hide:@string/wallet_reveal_private_show}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_private_key"
+            tools:text="@string/wallet_reveal_private_show" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

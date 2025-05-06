@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cc.typex.app.widget.view.AppToolbarView
+            android:id="@+id/etv_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:etv_title="@string/wallet_import_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:fontFamily="@font/sans_light"
+            android:labelFor="@id/et_keys"
+            android:text="@string/wallet_import_desc"
+            android:textColor="#80FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/etv_toolbar" />
+
+        <EditText
+            android:id="@+id/et_keys"
+            android:layout_width="match_parent"
+            android:layout_height="164dp"
+            android:layout_marginStart="@dimen/margin_horizontal_normal"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/margin_horizontal_normal"
+            android:background="@drawable/bg_wallet_import_input"
+            android:gravity="start|top"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:paddingStart="12dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="14dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc"
+            tools:text="1234566789941324fdsfadsfasdfzxcvzxcvawdfsdaf" />
+
+        <TextView
+            android:id="@+id/tv_button"
+            style="@style/Button.Positive.Big"
+            android:layout_width="match_parent"
+            android:layout_marginTop="78dp"
+            android:text="@string/wallet_import_button"
+            app:layout_constraintTop_toBottomOf="@id/et_keys" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="item"
+            type="cc.typex.app.page.wallet.WalletHistoryListItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/margin_horizontal_normal"
+        android:paddingTop="12dp"
+        android:paddingEnd="@dimen/margin_horizontal_normal"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:id="@+id/v_icon"
+            borderColor="@{@color/white_15_percent}"
+            borderResizeImage="@{true}"
+            borderWidth="@{@dimen/dp_1}"
+            imageUrl="@{item.operationTokenUrl}"
+            roundRadius="@{@dimen/dp_20}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/ic_wallet_list_item_solana" />
+
+        <TextView
+            android:id="@+id/tv_operation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/sans_medium"
+            android:includeFontPadding="false"
+            android:text="@{item.operationResId}"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_time"
+            app:layout_constraintStart_toEndOf="@id/v_icon"
+            app:layout_constraintTop_toTopOf="@id/v_icon"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Send" />
+
+        <TextView
+            android:id="@+id/tv_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/sans_medium"
+            android:includeFontPadding="false"
+            android:text="@{item.operationSymbol}"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_operation"
+            app:layout_constraintStart_toEndOf="@id/tv_operation"
+            app:layout_constraintTop_toTopOf="@id/tv_operation"
+            tools:text="SOL" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_light"
+            android:includeFontPadding="false"
+            android:text="@{item.timestampShort}"
+            android:textColor="#80FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_operation"
+            app:layout_constraintTop_toBottomOf="@id/tv_operation"
+            tools:text="21:10" />
+
+        <TextView
+            android:id="@+id/tv_big"
+            visibleOrGone="@{item.success}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_medium"
+            android:includeFontPadding="false"
+            android:text="@{item.detailLine1}"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="+0.02 PUMP" />
+
+        <TextView
+            android:id="@+id/tv_small"
+            visibleOrGone="@{item.success&amp;&amp;!TextUtils.isEmpty(item.detailLine2)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_light"
+            android:includeFontPadding="false"
+            android:text="@{item.detailLine2}"
+            android:textColor="#80FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_big"
+            app:layout_constraintTop_toBottomOf="@id/tv_big"
+            tools:text="-23.4 SOL" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            visibleOrGone="@{!item.success}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sans_medium"
+            android:includeFontPadding="false"
+            android:text="@{item.isError?@string/wallet_history_status_pending:@string/wallet_history_status_fail}"
+            android:textColor="@{item.statusColorId}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/wallet_history_status_pending" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
