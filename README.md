@@ -53,7 +53,7 @@ TypeX is built with a multi-layered architecture designed for security and perfo
 - Wallet Service C++ Implementation
 - Hybrid WebView
 
-### iOS/Android System Framework
+### Android System Framework
 
 - System Foundation and Services
 - Encryption Algorithm Collection
@@ -67,25 +67,8 @@ TypeX Wallet currently supports only the Solana blockchain, providing:
 - Support for SOL and all Solana-based tokens
 - Real-time monitoring of your Solana assets
 
-## 🗺️ Roadmap
-
-### Current MVP Features
-
-- Basic Wallet Functionality
-- Address Detection
-- Transaction Capabilities
-
-### Upcoming Features
-
-- Crypto Exchange Integration
-- Keyboard Skin NFTs
-- Advertising Revenue Model
-- Multi-chain Support (planned)
-- Enhanced Security Features
-
 ## 🔍 Technical Specifications
 
-- **iOS**: Swift, C++
 - **Android**: Kotlin, C++
 - **Cross-Platform Core**: C++ for cryptographic operations
 - **Security**: On-device processing with no cloud dependency
@@ -98,16 +81,6 @@ TypeX Wallet currently supports only the Solana blockchain, providing:
 4. The user can view wallet info, send tokens, or perform other actions
 5. Transactions are securely signed on-device
 6. The process completes without ever leaving the current application
-
-## 💻 Development
-
-TypeX is currently under active development. We welcome contributions from the community.
-
-### Requirements
-
-- XCode 14+ (for iOS development)
-- Android Studio Arctic Fox+ (for Android development)
-- Solana development toolkit
 
 ## 📜 License
 
