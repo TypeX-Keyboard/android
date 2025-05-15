@@ -1,5 +1,8 @@
 # TypeX Keyboard
 
+🤖Android App https://github.com/TypeX-Keyboard/android  
+🌎Server Backend https://github.com/TypeX-Keyboard/backend
+
 ## Building Crypto Experience through Input Methods
 
 TypeX Keyboard is a revolutionary mobile keyboard that integrates cryptocurrency functionality
